@@ -17,7 +17,7 @@ class PersonalBot(ABC):
         self.answers = {key: '' for key in self.label_texts}
 
     def main_function(self):
-        self.retrieve_entries()
+        self.retrieve_answers()
 
         try:
             number_of_tweets = int(self.answers['Number of Tweets'])
@@ -72,7 +72,7 @@ class PersonalBot(ABC):
             print(e.reason)
 
     @staticmethod
-    def reply_tweet(tweet, phrase, api):
+    def reply_tweet(tweet, phrase: str, api: tweepy.API):
         try:
             tweet_id = tweet.user.id
             username = tweet.user.screen_name
@@ -91,5 +91,5 @@ class PersonalBot(ABC):
             print(e.reason)
 
     @abstractmethod
-    def retrieve_entries(self):
+    def retrieve_answers(self):
         pass
