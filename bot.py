@@ -2,22 +2,38 @@ import tweepy
 import tkinter
 import json
 
-with open('keys.json', 'r') as f:
-    keys = json.load(f)
 
-auth = tweepy.OAuthHandler(keys['api_key'], keys['api_secret_key'])
-auth.set_access_token(keys['access_token'], keys['access_token_secret'])
+class PersonalBot:
 
-api = tweepy.API(auth)
+    def __init__(self, keys='keys.json'):
+        with open(keys, 'r') as f:
+            self.keys = json.load(f)
 
-user = api.me()
+        self.auth = tweepy.OAuthHandler(self.keys['api_key'], self.keys['api_secret_key'])
+        self.auth.set_access_token(self.keys['access_token'], self.keys['access_token_secret'])
 
-print(user.name)
+        self.api = tweepy.API(self.auth)
 
-for follower in tweepy.Cursor(api.followers).items():
+        self.user = self.api.me()
+        print(self.user.name)
 
-    try:
-        follower.follow()
-        print(f'followed {follower.name}')
-    except tweepy.error.TweepError:
-        print(f'failed to follow {follower.name}')
+    def follow_followers(self):
+        for follower in tweepy.Cursor(self.api.followers).items():
+
+            try:
+                follower.follow()
+                print(f'followed {follower.name}')
+            except tweepy.error.TweepError as e:
+                print(e.reason)
+                print(f'failed to follow {follower.name}')
+
+    def main_function(self):
+        pass
+
+
+def main():
+    my_bot = PersonalBot()
+
+
+if __name__ == '__main__':
+    main()
