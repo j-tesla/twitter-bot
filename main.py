@@ -1,5 +1,6 @@
-from tkinter import *
 import json
+from tkinter import *
+
 from botframe import BotFrame
 
 
