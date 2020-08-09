@@ -1,5 +1,6 @@
-import tweepy
 from abc import ABC, abstractmethod
+
+import tweepy
 
 
 class PersonalBot(ABC):
