@@ -53,4 +53,4 @@ python3 main.py
 + [Tkinter](https://wiki.python.org/moin/TkInter) for GUI
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE file](LICENSE) for details
+This project is licensed under the MIT License - check the [LICENSE file](LICENSE) for details.
